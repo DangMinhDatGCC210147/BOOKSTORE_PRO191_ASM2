@@ -47,7 +47,18 @@ public class CategoryGUITest {
     }
 
     @Test
-    public void testDuplicate(){
-
+    public void testEdit(){
+        Category temp = null;
+        Category cate = new Category("CAT001", "Adventure");
+        categoryList.add(cate);
+        for (Category ca : categoryList) {
+            if (ca.getCategoryId().equals("CAT001")){
+                temp = ca;
+            }
+        }
+        temp.setCategoryName("Horror");
+        String expectedOutput = temp.getCategoryName();
+        assertEquals(expectedOutput, "Horror");
     }
+
 }
