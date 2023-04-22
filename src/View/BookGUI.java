@@ -143,7 +143,7 @@ public class BookGUI extends JFrame {
                         JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                 if (answer == JOptionPane.YES_OPTION){
                     if(getSelectedRowForDeletion >= 0){
-                        bookController.getBookList().remove(getSelectedRowForDeletion);
+                        bookController.remove(bookId_txt.getText());
                         bookController.fillToTable();
                         XFile.writeObject(filePath,  bookController.getBookList());
                         JOptionPane.showMessageDialog(null, "Row is deleted!");
@@ -206,7 +206,7 @@ public class BookGUI extends JFrame {
                 int answer = JOptionPane.showConfirmDialog(bookPanel, "Do you want to remove all data in this table?", "Remove",
                         JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                 if (answer == JOptionPane.YES_OPTION){
-                    bookController.getBookList().removeAll( bookController.getBookList());
+                    bookController.removeAll(bookController.getBookList());
                     bookController.fillToTable();
                     XFile.writeObject(filePath,  bookController.getBookList());
                     JOptionPane.showMessageDialog(null, "All row have been deleted!");

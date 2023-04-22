@@ -51,7 +51,7 @@ public class CategoryGUI extends JFrame {
                         "Category ID", "Category Name"
                 }
         )
-        {
+        { // not allow for user edit in the table
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
