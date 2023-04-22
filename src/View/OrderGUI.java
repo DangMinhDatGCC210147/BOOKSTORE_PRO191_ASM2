@@ -89,28 +89,7 @@ public class OrderGUI extends JFrame {
                         insertButton.setText("Insert");
                     }
                 }else{
-
-                StringBuffer sb = new StringBuffer();
-                String input = orderId_txt.getText();
-                boolean inputValid = checkSpecificID(input); //Use to call a check Order category ID function
-
-                if (orderId_txt.getText().equals("")){
-                    sb.append("\nOrder ID is not allowed empty!!!");
-                }
-                if(qtyOrder_snip.getValue().equals(0)){
-                    sb.append("\nBook Quantity is not equal zero!!!");
-                }
-                if ((Integer)qtyOrder_snip.getValue() <= 0){
-                    sb.append("\nNumber of books must be a positive number!!!");
-                }
-                if (!inputValid){
-                    sb.append("\nPlease enter Order ID with OR#####!!!");
-                }
-                if (sb.length() > 0){
-                    JOptionPane.showMessageDialog(orderPanel, sb.toString(), "Invalidation", JOptionPane.ERROR_MESSAGE);
-                }else {
-                    checkID();
-                }
+                    checkInput();
             }
             }
         });
@@ -302,5 +281,29 @@ public class OrderGUI extends JFrame {
         Matcher matcher = pattern.matcher(input);
         // Use the matches() method to check if the input string matches the pattern
         return matcher.matches();
+    }
+
+    private void checkInput(){
+        StringBuffer sb = new StringBuffer();
+        String input = orderId_txt.getText();
+        boolean inputValid = checkSpecificID(input); //Use to call a check Order category ID function
+
+        if (orderId_txt.getText().equals("")){
+            sb.append("\nOrder ID is not allowed empty!!!");
+        }
+        if(qtyOrder_snip.getValue().equals(0)){
+            sb.append("\nBook Quantity is not equal zero!!!");
+        }
+        if ((Integer)qtyOrder_snip.getValue() <= 0){
+            sb.append("\nNumber of books must be a positive number!!!");
+        }
+        if (!inputValid){
+            sb.append("\nPlease enter Order ID with OR#####!!!");
+        }
+        if (sb.length() > 0){
+            JOptionPane.showMessageDialog(orderPanel, sb.toString(), "Invalidation", JOptionPane.ERROR_MESSAGE);
+        }else {
+            checkID();
+        }
     }
 }

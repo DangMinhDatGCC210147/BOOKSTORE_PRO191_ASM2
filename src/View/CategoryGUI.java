@@ -68,25 +68,7 @@ public class CategoryGUI extends JFrame {
         addCate_btn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                StringBuffer sb = new StringBuffer();
-                String input = categoryId_txt.getText();
-                boolean inputValid = checkSpecificID(input); //Use to check specific category ID
-
-                if (categoryId_txt.getText().equals("")){
-                    sb.append("\nCategory ID is not allowed empty!!!");
-                }
-                if(categoryName_txt.getText().equals("")){
-                    sb.append("\nCategory Name is not allowed empty!!!");
-                }
-                if (!inputValid){
-                    sb.append("\nPlease enter category ID with CAT###!!!");
-                }
-                if (sb.length() > 0){
-                    JOptionPane.showMessageDialog(categoryPanel, sb.toString(), "Invalidation", JOptionPane.ERROR_MESSAGE);
-                }else{
-                    checkID();
-                    clearCate();
-                }
+                checkInput();
             }
         });
         updateCate_btn.addMouseListener(new MouseAdapter() {
@@ -171,7 +153,27 @@ public class CategoryGUI extends JFrame {
         categoryName_txt.setText("");
         row = -1;
     }
+     private void checkInput(){
+         StringBuffer sb = new StringBuffer();
+         String input = categoryId_txt.getText();
+         boolean inputValid = checkSpecificID(input); //Use to check specific category ID
 
+         if (categoryId_txt.getText().equals("")){
+             sb.append("\nCategory ID is not allowed empty!!!");
+         }
+         if(categoryName_txt.getText().equals("")){
+             sb.append("\nCategory Name is not allowed empty!!!");
+         }
+         if (!inputValid){
+             sb.append("\nPlease enter category ID with CAT###!!!");
+         }
+         if (sb.length() > 0){
+             JOptionPane.showMessageDialog(categoryPanel, sb.toString(), "Invalidation", JOptionPane.ERROR_MESSAGE);
+         }else{
+             checkID();
+             clearCate();
+         }
+     }
 
     private void checkID() {
         boolean flag = false;
@@ -233,5 +235,4 @@ public class CategoryGUI extends JFrame {
         // Use the matches() method to check if the input string matches the pattern
         return matcher.matches();
     }
-
 }

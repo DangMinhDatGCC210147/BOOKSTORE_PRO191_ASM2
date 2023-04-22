@@ -79,48 +79,7 @@ public class BookGUI extends JFrame {
         addBook_btn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                StringBuffer sb = new StringBuffer();
-                //Check the BookID that it is a specific id
-                String input = bookId_txt.getText();
-                boolean inputValid = checkSpecificID(input); //Use to check specific category ID
-                //Check the price that it is a number
-                boolean temp = true;
-                try{
-                    double checkNum1 = Double.parseDouble(bookPrice_txt.getText());
-                }
-                catch(Exception ex){
-                    temp = false;
-                }
-                //=================================================================
-
-                if (bookId_txt.getText().equals("")){
-                    sb.append("\nBook ID is not allowed empty!!!");
-                }
-                if(bookTitle_txt.getText().equals("")){
-                    sb.append("\nBook Title is not allowed empty!!!");
-                }
-                if(bookPrice_txt.getText().equals("")){
-                    sb.append("\nBook Price is not allowed empty!!!");
-                }
-                if(quantityBook_spin.getValue().equals(0)){
-                    sb.append("\nBook Quantity is not equal zero!!!");
-                }
-                if ((Integer)quantityBook_spin.getValue() <= 0){
-                    sb.append("\nNumber of books must be a positive number!!!");
-                }
-                if (!inputValid){
-                    sb.append("\nPlease enter Book ID with BOK####!!!");
-                }
-                if (!temp){
-                    sb.append("\nPlease enter positive number in Price box and Quantity box!!");
-                }
-                if (sb.length() > 0){
-                    JOptionPane.showMessageDialog(bookPanel, sb.toString(), "Invalidation", JOptionPane.ERROR_MESSAGE);
-                }else {
-                    checkID();
-                    clearBook();
-                }
-
+                checkInput();
             }
         });
         exitBook_btn.addMouseListener(new MouseAdapter() {
@@ -323,4 +282,47 @@ public class BookGUI extends JFrame {
         return matcher.matches();
     }
 
+    private void checkInput(){
+        StringBuffer sb = new StringBuffer();
+        //Check the BookID that it is a specific id
+        String input = bookId_txt.getText();
+        boolean inputValid = checkSpecificID(input); //Use to check specific category ID
+        //Check the price that it is a number
+        boolean temp = true;
+        try{
+            double checkNum1 = Double.parseDouble(bookPrice_txt.getText());
+        }
+        catch(Exception ex){
+            temp = false;
+        }
+        //=================================================================
+
+        if (bookId_txt.getText().equals("")){
+            sb.append("\nBook ID is not allowed empty!!!");
+        }
+        if(bookTitle_txt.getText().equals("")){
+            sb.append("\nBook Title is not allowed empty!!!");
+        }
+        if(bookPrice_txt.getText().equals("")){
+            sb.append("\nBook Price is not allowed empty!!!");
+        }
+        if(quantityBook_spin.getValue().equals(0)){
+            sb.append("\nBook Quantity is not equal zero!!!");
+        }
+        if ((Integer)quantityBook_spin.getValue() <= 0){
+            sb.append("\nNumber of books must be a positive number!!!");
+        }
+        if (!inputValid){
+            sb.append("\nPlease enter Book ID with BOK####!!!");
+        }
+        if (!temp){
+            sb.append("\nPlease enter positive number in Price box and Quantity box!!");
+        }
+        if (sb.length() > 0){
+            JOptionPane.showMessageDialog(bookPanel, sb.toString(), "Invalidation", JOptionPane.ERROR_MESSAGE);
+        }else {
+            checkID();
+            clearBook();
+        }
+    }
 }

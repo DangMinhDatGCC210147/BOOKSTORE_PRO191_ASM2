@@ -88,4 +88,6 @@ public class CategoryController {
             JOptionPane.showMessageDialog(null,"Database is empty!!");
         }
     }
+
+
 }
