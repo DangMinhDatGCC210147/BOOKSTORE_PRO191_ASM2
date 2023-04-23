@@ -277,12 +277,14 @@ public class OrderGUI extends JFrame {
         DefaultComboBoxModel<String> model1 = new DefaultComboBoxModel<>();
         ArrayList<String> bookTitle = new ArrayList<>();
         ArrayList<Book> list = (ArrayList<Book>) gotBookTitle();
-        for(Book b: list){
-            bookTitle.add(b.getBookTitle());
+        if ( list != null){
+            for(Book b: list){
+                bookTitle.add(b.getBookTitle());
+            }
+            for (String order: bookTitle) {
+                model1.addElement(order);
+            }bookTitleOrder_cb.setModel(model1);
         }
-        for (String order: bookTitle) {
-            model1.addElement(order);
-        }bookTitleOrder_cb.setModel(model1);
     }
 
     //Check ID with OR#####

@@ -20,8 +20,8 @@ public class XFile {
             Object o = ois.readObject();
             ois.close();
             return o;
-        } catch (Exception e) {
-            System.out.println("Your file is have nothing!!!");
+        }catch (Exception e) {
+            System.out.println("Your file have nothing!!!");
             return null;
         }
     }

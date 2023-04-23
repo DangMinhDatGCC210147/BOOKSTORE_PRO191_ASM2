@@ -236,16 +236,19 @@ public class BookGUI extends JFrame {
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
         ArrayList<String> categoryBook = new ArrayList<>();
         ArrayList<Category> list = (ArrayList<Category>) gotCategory();
-        for(Category t: list){
-            categoryBook.add(t.getCategoryName());
+        if (list != null) {
+            for (Category t : list) {
+                categoryBook.add(t.getCategoryName());
+            }
+            for (String book : categoryBook) {
+                model.addElement(book);
+            }
+            categoryBook_cb.setModel(model);
         }
-        for (String book: categoryBook) {
-            model.addElement(book);
-        }categoryBook_cb.setModel(model);
     }
     private List<Category> gotCategory() {
         cateList = (List<Category>) XFile.readObject(getFilePathCate);
-        return cateList;
+            return cateList;
     }
 
     private void createBook() {
