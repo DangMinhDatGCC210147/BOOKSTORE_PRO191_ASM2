@@ -185,6 +185,7 @@ public class OrderGUI extends JFrame {
         qtyOrder_snip.setValue(0);
         bookTitleOrder_cb.setSelectedIndex(0);
         insertButton.setText("Checkout");
+
         row = -1;
     }
 
@@ -230,28 +231,39 @@ public class OrderGUI extends JFrame {
 
     private void saveFromForm() {
         Book book = new Book();
+        int newQuantity = 0;
         for (Book b: bookList) {
             if (b.getBookTitle().equals(bookTitleOrder_cb.getSelectedItem().toString())){
                 book = b;
 
                 int updateQuantity = b.getQuantity() - (Integer) qtyOrder_snip.getValue();
-                b.setQuantity(updateQuantity);
-                orderController.fillToTable();
-                XFile.writeObject(filePathBook,bookList);
 
-                if (updateQuantity < 10){
+                if (updateQuantity <= 0) {
+                    JOptionPane.showMessageDialog(null, "Out of product in stock");
+                    newQuantity = 1;
+                    break;
+                }else if (updateQuantity < 10) {
                     JOptionPane.showMessageDialog(null, "Attention, a number of books in stock is less than 10 products!");
+                    b.setQuantity(updateQuantity);
+                    orderController.fillToTable();
+                    XFile.writeObject(filePathBook,bookList);
+                }else {
+                    b.setQuantity(updateQuantity);
+                    orderController.fillToTable();
+                    XFile.writeObject(filePathBook,bookList);
                 }
+
             }
         }
-        Order order = new Order(
-                orderId_txt.getText(),
-                book,
-                (Integer) qtyOrder_snip.getValue(),
-                Double.parseDouble(total_txt.getText())
-        );
-        orderController.insert(order);
-
+        if (newQuantity == 0) {
+            Order order = new Order(
+                    orderId_txt.getText(),
+                    book,
+                    (Integer) qtyOrder_snip.getValue(),
+                    Double.parseDouble(total_txt.getText())
+            );
+            orderController.insert(order);
+        }
     }
 
     //Read data from BookList

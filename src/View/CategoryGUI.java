@@ -151,6 +151,7 @@ public class CategoryGUI extends JFrame {
     private void clearCate() {
         categoryId_txt.setText("");
         categoryName_txt.setText("");
+        search_txt.setText("");
         row = -1;
     }
      private void checkInput(){

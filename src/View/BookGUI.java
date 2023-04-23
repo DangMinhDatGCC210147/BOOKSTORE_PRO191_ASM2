@@ -190,6 +190,7 @@ public class BookGUI extends JFrame {
         categoryBook_cb.setSelectedIndex(0);
         quantityBook_spin.setValue(0);
         yesBook_rd.isSelected();
+        search_txt.setText("");
         row = -1;
     }
 
